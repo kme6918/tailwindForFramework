@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs with Tailwind CSS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-6">
+    <!-- Tab Buttons -->
+    <div class="mb-4">
+      <nav class="flex space-x-4" aria-label="Tabs">
+        <button class="px-3 py-2 text-gray-800 bg-gray-200 rounded-md" id="tab-1-btn">My Account</button>
+        <button class="px-3 py-2 text-gray-800 bg-gray-200 rounded-md" id="tab-2-btn">Company</button>
+        <button class="px-3 py-2 text-white bg-blue-500 rounded-md" id="tab-3-btn">Team Members</button>
+        <button class="px-3 py-2 text-gray-800 bg-gray-200 rounded-md" id="tab-4-btn">Billing</button>
+      </nav>
+    </div>
+    <!-- Tab Contents -->
+    <div id="tab-1-content" class="hidden px-14 py-14">
+      <h2 class="text-xl font-bold mb-4">My Account</h2>
+      <p>This is the My Account content.</p>
+    </div>
+    <div id="tab-2-content" class="hidden px-14 py-14">
+      <h2 class="text-xl font-bold mb-4">Company</h2>
+      <p>This is the Company content.</p>
+    </div>
+    <div id="tab-3-content" class="px-14 py-14">
+      <h2 class="text-xl font-bold mb-4">Team Members</h2>
+      <p>This is the Team Members content.</p>
+    </div>
+    <div id="tab-4-content" class="hidden px-14 py-14">
+      <h2 class="text-xl font-bold mb-4">Billing</h2>
+      <p>This is the Billing content.</p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabButtons = document.querySelectorAll('[id^="tab-"]');
+      const tabContents = document.querySelectorAll('[id^="tab-"][id$="content"]');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const tabId = this.id.replace('-btn', '');
+          
+          tabButtons.forEach(btn => {
+            btn.classList.remove('bg-blue-500', 'text-white');
+            btn.classList.add('bg-gray-200', 'text-gray-800');
+          });
+          this.classList.add('bg-blue-500', 'text-white');
+          this.classList.remove('bg-gray-200', 'text-gray-800');
+          
+          tabContents.forEach(content => {
+            content.classList.add('hidden');
+          });
+          document.getElementById(`${tabId}-content`).classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

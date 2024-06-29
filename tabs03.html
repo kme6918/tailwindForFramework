@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs with Tailwind CSS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    span {
+        font-weight: 800;
+    }
+    .hidden {
+      display: none;
+    }
+    .abu > :not([hidden]) ~ :not([hidden]) {
+        --tw-space-x-reverse: 0;
+        margin-right: calc(2rem* var(--tw-space-x-reverse));
+        /* margin-left: calc(2rem* calc(1 - var(--tw-space-x-reverse))); */
+    }
+    .ayn {
+        --tw-text-opacity: 1;
+        color: rgb(79 70 229 / var(--tw-text-opacity));
+    }
+    .axx {
+        --tw-text-opacity: 1;
+        color: rgb(107 114 128 / var(--tw-text-opacity));
+    }
+    .awk {
+        font-weight: 500;
+    }
+    .awg {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    .asi {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .arg {
+        padding-left: 0.25rem;
+        padding-right: 0.25rem;
+    }
+    .ahf {
+        border-color: transparent;
+    }
+    .agn {
+        --tw-border-opacity: 1;
+        border-color: rgb(99 102 241 / var(--tw-border-opacity));
+    }
+    .afo {
+        border-bottom-width: 2px;
+    }
+    .adt {
+        white-space: nowrap;
+    }
+    .ro {
+        width: 24%;
+        margin-left: 0;
+        margin-right: 0;
+        padding-left: 0;
+        padding-right: 0;
+        box-sizing:border-box;
+    }
+    .blc:hover {
+        --tw-text-opacity: 1;
+        color: rgb(55 65 81 / var(--tw-text-opacity));
+    }
+    .bhp:hover {
+        --tw-border-opacity: 1;
+        border-color: rgb(209 213 219 / var(--tw-border-opacity));
+    }
+    .bg-cyan-100 {
+        background-color: rgb(207 250 254);
+    }
+    .bg-blue-300 {
+        background-color: rgb(147 197 253);
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-6">
+    <!-- Tab Buttons -->
+    <div class="mb-4">
+      <nav class="hk lx abu" aria-label="Tabs">
+        <button class="ro ahf axx bhp blc adt afo arg asi awg awk" id="tab-1-btn">
+            <span>My Account</span>
+        </button>
+        <button class="ro ahf axx bhp blc adt afo arg asi awg awk" id="tab-2-btn">
+            <span>Company</span>
+        </button>
+        <button class="ro agn ayn adt afo arg asi awg awk" aria-current="page" id="tab-3-btn">
+            <span>Team Members</span>
+        </button>
+        <button class="ro ahf axx bhp blc adt afo arg asi awg awk" id="tab-4-btn">
+            <span>Billing</span>
+        </button>
+      </nav>
+    </div>
+    <!-- Tab Contents -->
+    <div id="tab-1-content" class="hidden px-14 py-14 bg-blue-300">
+      <h2 class="text-xl font-bold mb-4">My Account</h2>
+      <p>This is the My Account content.</p>
+    </div>
+    <div id="tab-2-content" class="hidden px-14 py-14 bg-blue-300">
+      <h2 class="text-xl font-bold mb-4">Company</h2>
+      <p>This is the Company content.</p>
+    </div>
+    <div id="tab-3-content" class="px-14 py-14 bg-blue-300">
+      <h2 class="text-xl font-bold mb-4">Team Members</h2>
+      <p>This is the Team Members content.</p>
+    </div>
+    <div id="tab-4-content" class="hidden px-14 py-14 bg-blue-300">
+      <h2 class="text-xl font-bold mb-4">Billing</h2>
+      <p>This is the Billing content.</p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabButtons = document.querySelectorAll('[id^="tab-"]');
+      const tabContents = document.querySelectorAll('[id^="tab-"][id$="content"]');
+      
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function () {
+          const tabId = this.id.replace('-btn', '');
+          
+          tabButtons.forEach(btn => {
+            btn.classList.remove('agn', 'ayn');
+            btn.classList.add('ahf', 'axx', 'bhp', 'bic');
+          });
+          this.classList.add('agn', 'ayn');
+          this.classList.remove('ahf', 'axx', 'bhp', 'bic');
+          
+          tabContents.forEach(content => {
+            content.classList.add('hidden');
+          });
+          document.getElementById(`${tabId}-content`).classList.remove('hidden');
+        });
+      });
+    });
+  </script>
+</body>
+</html>

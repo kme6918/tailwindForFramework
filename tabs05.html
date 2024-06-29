@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tabs with Tailwind CSS</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    button {
+        font-weight: 800;
+    }
+    .hidden {
+      display: none;
+    }
+    .det {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+    .cgf {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    .ary {
+        padding-top: 3rem;
+        padding-bottom: 3rem;
+    }
+    .aro {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .aio {
+        --tw-bg-opacity: 1;
+        background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+    }
+    .acn > :not([hidden]) ~ :not([hidden]) {
+        --tw-divide-opacity: 1;
+        border-color: rgb(229 231 235 / var(--tw-divide-opacity));
+    }
+    .aci > :not([hidden]) ~ :not([hidden]) {
+        --tw-divide-x-reverse: 0;
+        border-right-width: calc(1px* var(--tw-divide-x-reverse));
+        border-left-width: calc(1px* calc(1 - var(--tw-divide-x-reverse)));
+    }
+    .blc {
+        background-color: #fff;
+    }
+    .blc:hover {
+        --tw-text-opacity: 1;
+        color: rgb(55 65 81 / var(--tw-text-opacity));
+    }
+    .bik:hover {
+        --tw-bg-opacity: 1;
+        background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+    }
+    .axx {
+        --tw-text-opacity: 1;
+        color: rgb(107 114 128 / var(--tw-text-opacity));
+        border-bottom: 2px solid #dcdcdc;
+    }
+    .awk {
+        font-weight: 800;
+    }
+    .awg {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+    }
+    .avr {
+        text-align: center;
+    }
+    .asi {
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+    .aro {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .alt {
+        --tw-bg-opacity: 1;
+        background-color: rgb(255 255 255 / var(--tw-bg-opacity));
+    }
+    .aej {
+        border-top-left-radius: 0.5rem;
+        border-bottom-left-radius: 0.5rem;
+    }
+    .adn {
+        overflow: hidden;
+    }
+    .ut {
+        flex: 1 1 0%;
+    }
+    .tx {
+        min-width: 0px;
+    }
+    .ab {
+        position: relative;
+    }
+    .tab-content {
+        min-height: 200px;
+        background-color: #ececec;
+    }
+    .btn {
+        border-right:1px solid #ececec;
+    }
+    .ayb {
+        --tw-text-opacity: 1;
+        color: rgb(37 99 235);
+        border-bottom: 2px solid rgb(37 99 235);        
+    }
+  </style>
+</head>
+<body class="">
+  <div class="container md byq mx-auto px-1 py-1" style="width:850px;">
+    <!-- Tab Buttons -->
+    <div class="mx-auto px-2 py-2" style="background-color: beige;">
+        <div class="ec lx aci acn aea bbo mx-auto my-2" style="width: 620px;">
+        <nav class="flex space-x-0" aria-label="Tabs">
+            <button class="btn px-3 py-2 ayb bqi ab tx ut adn alt aro asi avr awg awk bik bmk rounded-l-lg" id="tab-1-btn" aria-current="page">My Account</button>
+            <button class="btn px-3 py-2 axx blc bqi ab tx ut adn alt aro asi avr awg awk bik bmk" id="tab-2-btn">Company</button>
+            <button class="btn px-3 py-2 axx blc bqi ab tx ut adn alt aro asi avr awg awk bik bmk" id="tab-3-btn">Team Members</button>
+            <button class="btn px-3 py-2 axx blc bqi ab tx ut adn alt aro asi avr awg awk bik bmk rounded-r-lg" id="tab-4-btn">Billing</button>
+        </nav>
+        </div>
+    </div>
+    <!-- Tab Contents -->
+    <div id="tab-1-content" class="px-8 py-8 tab-content bg-yellow-100">
+      <h2 class="text-xl font-bold mb-4">My Account</h2>
+      <p>This is the My Account content.</p>
+    </div>
+    <div id="tab-2-content" class="hidden px-8 py-8 tab-content bg-yellow-100">
+      <h2 class="text-xl font-bold mb-4">Company</h2>
+      <p>This is the Company content.</p>
+    </div>
+    <div id="tab-3-content" class="hidden px-8 py-8 tab-content bg-yellow-100">
+      <h2 class="text-xl font-bold mb-4">Team Members</h2>
+      <p>This is the Team Members content.</p>
+    </div>
+    <div id="tab-4-content" class="hidden px-8 py-8 tab-content bg-yellow-100">
+      <h2 class="text-xl font-bold mb-4">Billing</h2>
+      <p>This is the Billing content.</p>
+    </div>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const tabButtons = document.querySelectorAll('[id^="tab-"]');
+      const tabContents = document.querySelectorAll('[id^="tab-"][id$="content"]');
+      const dropdown = document.getElementById('tabs');
+
+      function showTabContent(tabId) {
+        tabButtons.forEach(btn => {
+          btn.classList.remove('ayb');
+          btn.classList.add('axx', 'blc');
+        });
+        document.getElementById(`${tabId}-btn`).classList.add('ayb');
+        document.getElementById(`${tabId}-btn`).classList.remove('axx', 'blc');
+
+        tabContents.forEach(content => {
+          content.classList.add('hidden');
+        });
+        document.getElementById(`${tabId}-content`).classList.remove('hidden');
+      }
+
+      tabButtons.forEach(button => {
+        button.addEventListener('click', function (event) {
+          event.preventDefault();
+          const tabId = this.id.replace('-btn', '');
+          showTabContent(tabId);
+        });
+      });
+
+      dropdown.addEventListener('change', function () {
+        const selectedOption = this.value.replace(' ', '-').toLowerCase();
+        showTabContent(`tab-${selectedOption}`);
+      });
+    });
+  </script>
+</body>
+</html>
